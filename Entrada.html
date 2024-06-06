@@ -51,7 +51,7 @@
       <div class="container px-4 py-5 align-items-center" id="custom-cards">
         <h2 class="pb-2 border-bottom">Boletos</h2>
     
-        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5" id="waaa">
           <div class="col">
             <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('Figura-1-Ejemplos-de-codigos-QR.png'); background-position: center center;
             background-size: cover; ">
@@ -154,7 +154,17 @@
           </div>
       </footer>
 
-
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var divElement = document.getElementById("waaa");
+        
+            divElement.addEventListener("click", function() {
+                setTimeout(function() {
+                    alert("¡Entraste al evento!");
+                }, 3000);
+            });
+        });
+        </script>
     
 </body>
 </html>
