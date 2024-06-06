@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Validacion Fan Id</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="home.css">
+    
   <script src="qrCode.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -92,8 +96,10 @@
 
 </head>
 <body>
+
+
   <header class="d-flex justify-content-center py-3">
-    <a class="blog-header-logo text-body-emphasis text-decoration-none">Validar FAN ID</a>
+    <h1 class="blog-header-logo text-body-emphasis" >Validar FAN ID</h1>
 </header>
 
 <header class="p-3 ">
@@ -105,13 +111,11 @@
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="index.html" class="nav-link px-2 text-secondary">Inicio</a></li>
-          <li><a href="Compra boleto.html" class="nav-link px-2 link-body-emphasis">Compra Boleto</a></li>
-          <li><a href="Entrada.html" class="nav-link px-2 link-body-emphasis">Entrada</a></li>
-          <li><a href="Sorteo de Boletos.html" class="nav-link px-2 link-body-emphasis">Sorteo Boletos</a></li>
           
-          <li><a href="sorteo.html" class="nav-link px-2 link-body-emphasis">Validar Boleto</a></li>
-          <li><a href="validaFanId.html" class="nav-link px-2 link-body-emphasis">Validar FAN ID</a></li>
-          <li><a href="Fan-ID.html" class="nav-link px-2 link-body-emphasis">FAN ID</a></li>
+          <li><a href="Fan-ID.html" class="nav-link px-2 link-body-emphasis">Crear FAN ID</a></li>
+          <li><a href="Eventos.html" class="nav-link px-2 link-body-emphasis">Registrar Eventos</a></li>
+          <li><a href="Solicitud Boleto.html" class="nav-link px-2 link-body-emphasis">Solicitar Boleto</a></li>
+          <li><a href="Entrada.html" class="nav-link px-2 link-body-emphasis">Entrada</a></li>
           
         </ul>
         <a class="link-secondary" href="#" aria-label="Search">
@@ -128,20 +132,43 @@
       </div>
     </div>
   </header>
-  <div class="row justify-content-center mt-5">
-    <div class="col-sm-4 shadow p-3">
-      <h5 class="text-center">Escanear codigo QR</h5>
-      <div class="row text-center">
-        <a id="btn-scan-qr" href="#">
-          <img src="https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2017/07/1499401426qr_icon.svg" class="img-fluid text-center" width="175">
-        </a>
-        <canvas hidden="" id="qr-canvas" class="img-fluid"></canvas>
+
+
+  <div class="container my-4">
+    <div class="row g-5">
+        
+        <div class="col-md-7 col-lg-8">
+          <form class="needs-validation" novalidate="">
+  
+            <h4 class="mb-3">Ingresa tu FAN-ID</h4>
+  
+            <div class="row gy-3">
+              <div class="col-md-6">
+                <label for="cc-name" class="form-label">FAN-ID</label>
+                <input type="text" class="form-control" id="cc-name" placeholder="" required="">
+              </div>
+  
+            </div>
+          </form>
+          </div>
         </div>
-        <div class="row mx-5 my-3">
-            <button class="btn btn-validate btn-lg rounded-pill mt-3" onclick="encenderCamara()">Da click para escanear el boleto</button>
+
+    <div class="row justify-content-center mt-5">
+      <div class="col-sm-4 shadow p-3">
+        <h5 class="text-center">Escanear codigo QR</h5>
+        <div class="row text-center">
+          <a id="btn-scan-qr" href="#">
+            <img src="https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2017/07/1499401426qr_icon.svg" class="img-fluid text-center" width="175">
+          </a>
+          <canvas hidden="" id="qr-canvas" class="img-fluid"></canvas>
+          </div>
+          <div class="row mx-5 my-3">
+              <button class="btn btn-validate btn-lg rounded-pill mt-3" onclick="location.href='Entrada.html'" >Da click para escanear el boleto</button>
+        </div>
       </div>
     </div>
   </div>
+
   <script src="main.js"></script>
 </body>
 </html>
