@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="home.css">
+    <title>Evento - Entrada</title>
+    <style>
+        #qr-code {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+        }
+        #placeholder {
+            width: 150px;
+            height: 150px;
+            background-color: black;
+            margin: 0 auto;
+            display: block;
+        }
+        #activate-ticket-btn {
+            display: none;
+            margin-top: 20px;
+        }
+        #id {
+            display: none;
+            margin-top: 20px;
+        }
+        #mensaje {
+            display: none;
+            margin-top: 20px;
+        }
+        .custom-card {
+            height: 100%;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        .custom-card img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+        .custom-card .card-body {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-shadow: 1px 1px 2px black;
+        }
+        .custom-card .card-body small {
+            font-size: 0.9rem;
+        }
+        .form-select, .form-control, .btn {
+            border-radius: 0.5rem;
+        }
+        .form-select, .form-control {
+            margin-bottom: 1rem;
+        }
+        .form-control:focus, .form-select:focus {
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+    </style>
+</head>
+<body>
+
+<header class="d-flex justify-content-center py-3">
+    <h1 class="blog-header-logo text-body-emphasis">Entrada</h1>
+</header>
+
+<header class="p-3 ">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#"></use></svg>
+      </a>
+
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="index.html" class="nav-link px-2 text-secondary">Inicio</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle show" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+            Eventos
+          </a>
+          <ul class="dropdown-menu show" data-bs-popper="static">
+            <li><a class="dropdown-item" href="Eventos.html">Registrar Evento</a></li>
+            <li><a class="dropdown-item" href="Evento Baja.html">Dar de Baja</a></li>
+          </ul>
+        </li>
+        <li><a href="Solicitud Boleto.html" class="nav-link px-2 link-body-emphasis">Solicitar Boleto</a></li>
+        <li><a href="Sorteo de Boletos.html" class="nav-link px-2 link-body-emphasis">Asignación Boleto</a></li>
+        <li><a href="Compra boleto.html" class="nav-link px-2 link-body-emphasis">Compra Boleto</a></li>
+        <li><a href="Fan-ID.html" class="nav-link px-2 link-body-emphasis">Crear FAN ID</a></li>
+        <li><a href="Valida Boleto.html" class="nav-link px-2 link-body-emphasis">Validación Boleto</a></li>
+        <li><a href="validaFanId.html" class="nav-link px-2 link-body-emphasis">Validación FAN ID</a></li>
+        <li><a href="Entrada.html" class="nav-link px-2 link-body-emphasis">Entrada</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main class="p-5">
+    <div class="container px-4 py-5 align-items-center" id="custom-cards">
+        <h2 class="pb-2 border-bottom">Activación de Boletos</h2>
+
+        <div class="row g-4 py-5 justify-content-center">
+            <div class="col-lg-6 text-center">
+                <form id="event-form">
+                    <label for="event-select" class="form-label">Seleccionar Evento:</label>
+                    <select id="event-select" class="form-select">
+                        <option value="Expobátiz">Expobátiz</option>
+                        <option value="Caifanes">Caifanes</option>
+                        <option value="Circus Maximus - Travis Scott">Circus Maximus - Travis Scott</option>
+                        <option value="Eras tour - Taylor ErasSwift">Eras tour - Taylor Swift</option>
+                        <option value="Yeezus tour">Yeezus tour</option>
+                    </select>
+                    <button type="button" class="btn btn-primary" onclick="activateEvent()">Activar Evento</button>
+                
+                    <p id="mensaje">Debes estar a 20 metros de la entrada y a menos de 2 horas del evento para activar tu boleto.</p>
+                    <input type="text" id="id" class="form-control" placeholder="Ingresa el ID del FAN">
+                    <button id="activate-ticket-btn" type="button" class="btn btn-success" onclick="revealQRCode()">Activar Boleto</button>
+                </form>
+
+                <div id="qr-code">
+                    <img id="qr-image" src="https://via.placeholder.com/150" alt="QR Code">
+                    <p>Código QR activado</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5" id="waaa">
+            <!-- Tarjetas se insertarán aquí -->
+        </div>
+    </div>
+</main>
+
+<footer class="container py-5">
+    <div class="row">
+        <div class="col-12 col-md">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mb-2" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"></circle><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"></path></svg>
+            <small class="d-block mb-3 text-body-secondary">© 2017–2024</small>
+        </div>
+        <div class="col-6 col-md">
+            <h5>Features</h5>
+            <ul class="list-unstyled text-small">
+                <li><a class="link-secondary text-decoration-none" href="#">Cool stuff</a></li>
+                <li><a class="link-secondary text-decoration-none" href="#">Random feature</a></li>
+                <li><a class="link-secondary text-decoration-none" href="#">Team feature</a></li>
+                <li><a class="link-secondary text-decoration-none" href="#">Stuff for developers</a></li>
+                <li><a class="link-secondary text-decoration-none" href="#">Another one</a></li>
+                <li><a class="link-secondary text-decoration-none" href="#">Last time</a></li>
+            </ul>
+        </div>
+        <div class="col-6 col-md">
+            <h5>Resources</h5>
+            <ul class="list-unstyled text-small">
+                <li><a class="link-secondary text-decoration-none" href="#">Resource name</a></li>
+                <li><a class="link-secondary text-decoration-none" href="#">Resource</a></li>
+                <li><a class="link-secondary text-decoration-none" href="#">Another resource</a></li>
+                <li><a class="link-secondary text-decoration-none" href="#">Final resource</a></li>
+            </ul>
+        </div>
+        <div class="col-6 col-md">
+            <h5>Resources</h5>
+            <ul class="list-unstyled text-small">
+                <li><a class="link-secondary text-decoration-none" href="#">Business</a></li>
+                <li><a class="link-secondary text-decoration-none" href="#">Education</a></li>
+                <li><a class="link-secondary text-decoration-none" href="#">Government</a></li>
+                <li><a class="link-secondary text-decoration-none" href="#">Gaming</a></li>
+            </ul>
+        </div>
+        <div class="col-6 col-md">
+            <h5>About</h5>
+            <ul class="list-unstyled text-small">
+                <li><a class="link-secondary text-decoration-none" href="#">Team</a></li>
+                <li><a class="link-secondary text-decoration-none" href="#">Locations</a></li>
+                <li><a class="link-secondary text-decoration-none" href="#">Privacy</a></li>
+                <li><a class="link-secondary text-decoration-none" href="#">Terms</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+        <p>© 2024 Company, Inc. All rights reserved.</p>
+        <ul class="list-unstyled d-flex">
+            <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
+            <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
+            <li class="ms-3"><a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+        </ul>
+    </div>
+</footer>
+
+<script>
+    function activateEvent() {
+        var selectedEvent = document.getElementById('event-select').value;
+        if (selectedEvent) {
+            document.getElementById('activate-ticket-btn').style.display = 'block';
+            document.getElementById('id').style.display = 'block';
+            document.getElementById('mensaje').style.display = 'block';
+            alert('Evento activado. Ahora puedes activar tu boleto');
+        } else {
+            alert('Por favor, selecciona un evento.');
+        }
+    }
+
+    function revealQRCode() {
+        var selectedEvent = document.getElementById('event-select').value;
+        var currentTime = new Date();
+        var eventTime = new Date(currentTime.getTime() + (1 * 60 * 60 * 1000)); // Set event time 1 hour from now for testing
+        var distance = 15; // Set distance to 15 meters for testing
+
+        if (currentTime >= eventTime) {
+            document.getElementById('mensaje').textContent = 'El evento ya ha comenzado o terminado.';
+        } else if (distance > 20) {
+            document.getElementById('mensaje').textContent = 'Estás demasiado lejos para activar el boleto.';
+        } else {
+            document.getElementById('mensaje').textContent = '';
+            document.getElementById('qr-code').style.display = 'block';
+            document.getElementById('qr-image').src = 'Figura-1-Ejemplos-de-codigos-QR.png';
+
+            var additionalInfo = `
+                <div class="col">
+                    <div class="card custom-card h-100 text-bg-dark" style="background-image: url('Figura-1-Ejemplos-de-codigos-QR.png');">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"></h3>
+                            <ul class="d-flex list-unstyled mt-auto">
+                                <li class="d-flex align-items-center me-3">
+                                    <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"></use></svg>
+                                    <small>Entrada</small>
+                                </li>
+                                <li class="d-flex align-items-center">
+                                    <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"></use></svg>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card custom-card h-100 text-bg-dark" style="background-image: url('unsplash-photo-1.jpg');">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Entrada al evento: ${selectedEvent}</h3>
+                            <ul class="d-flex list-unstyled mt-auto">
+                                <li class="me-auto">
+                                </li>
+                                <li class="d-flex align-items-center me-3">
+                                    <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"></use></svg>
+                                    <small>Boleto activado, ¡Disfrute su evento!</small>
+                                </li>
+                                <li class="d-flex align-items-center">
+                                    <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"></use></svg>
+                                    <small></small>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('waaa').innerHTML = additionalInfo;
+        }
+        alert('Tu boleto se ha activado correctamente');
+    }
+</script>
+</body>
+</html>
